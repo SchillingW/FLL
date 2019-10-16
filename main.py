@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from Launches import Launches
-from Robot import MakeRobot
-from Run import RunLaunch
+from Robot import MakeRobot, RunLaunch
 
 # Define the robot.
 WheelDistance = 12.0 #cm
