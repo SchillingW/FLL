@@ -3,8 +3,8 @@ from Launches import Launches
 from Robot import MakeRobot, RunLaunch
 
 # Define the robot.
-WheelDistance = 12.0 #cm
-WheelDiameter = 5.6 #cm
+WheelDistance = 11.5 #cm
+WheelDiameter = 4.0 #cm
 
 TankBase = ["B", "C"]
 MedMotors = ["A", "D"]
