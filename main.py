@@ -23,7 +23,7 @@ MaxLaunch = len(Launches) - 1
 while True:
 
     # Display the number of the selected launch.
-    Robot.Display(str(SelectedLaunch + 1))
+    Robot.Display(SelectedLaunch + 1)
 
     # Wait for a button to be pressed. Record which button was pressed.
     LeftPressed = Robot.Button("LEFT")
