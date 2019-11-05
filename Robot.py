@@ -87,9 +87,9 @@ class MakeRobot:
         Self.TankBase.on(Self.SpeedCPS(LeftSpeed), Self.SpeedCPS(RightSpeed))
         # Wait for gyro to be at TargetDegree.
         LaunchExited = False
-        while ((TargetDegree > Self.Gyro.angle and DegPerSec > 0) # Use this condition when the degree is increasing (DegPerSec > 0).
+        while ((TargetDegree < -Self.Gyro.angle and DegPerSec > 0) # Use this condition when the degree is increasing (DegPerSec > 0).
                 or
-               (TargetDegree < Self.Gyro.angle and DegPerSec < 0)): # Use this condition when the degree is decreasing (DegPerSec < 0).
+               (TargetDegree > -Self.Gyro.angle and DegPerSec < 0)): # Use this condition when the degree is decreasing (DegPerSec < 0).
             if Self.Button("DOWN"):
                 LaunchExited = True
                 break
@@ -132,7 +132,7 @@ class MakeRobot:
     # Other functions.
     
     def Display(Self, Text):
-        Self.LCD.text_pixels(Text)
+        Self.LCD.text_pixels(str(Text))
         Self.LCD.update()
     
     def Button(Self, Button):
@@ -143,11 +143,18 @@ class MakeRobot:
         return Pressed[Button]
 
 def RunLaunch(Launch, Robot):
+    # Reset the gyro sensor.
+    Robot.Gyro.mode = "GYRO-RATE"
+    Robot.Gyro.mode = "GYRO-ANG"
     # Cycle through the steps of the launch.
     for Step in Launch:
         StepExited = Robot.InLaunchFunctions[Step[0]](Robot, Step[1:])
         # Return true and exit the launch if the step was exited.
         if StepExited:
             return True
+    
+    # Stop all motion.
+    Robot.MedMotors[0].off()
+    Robot.MedMotors[1].off()
     # Return false if the launch was completed without being exited on any step.
     return False
