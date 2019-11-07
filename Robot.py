@@ -14,7 +14,7 @@ class MakeRobot:
         # Define the parts of the robot.
         Self.SpeedRPS = SpeedRPS
         Self.WheelDistance = WheelDistance
-        Self.WheelCircumference = WheelDiameter * 3.1415
+        Self.WheelCircumference = WheelDiameter * 3.1416
         Self.TankBase = MoveTank(Ports[TankBase[0]], Ports[TankBase[1]])
         Self.DriveMotor = LargeMotor(Ports[TankBase[0]]) # Used only for sensing degrees.
         Self.MedMotors = [MediumMotor(Ports[MedMotors[0]]), MediumMotor(Ports[MedMotors[1]])]
@@ -75,8 +75,8 @@ class MakeRobot:
         LeftRadius = Radius + Self.WheelDistance / 2
         RightRadius = Radius - Self.WheelDistance / 2
         # Calculate the circumference of each wheel's path.
-        LeftCircumference = LeftRadius * 2 * 3.1415
-        RightCircumference = RightRadius * 2 * 3.1415
+        LeftCircumference = LeftRadius * 2 * 3.1416
+        RightCircumference = RightRadius * 2 * 3.1416
         # Caluclate the distance per degree of each wheel's path.
         LeftCmPerDeg = LeftCircumference / 360
         RightCmPerDeg = RightCircumference / 360
@@ -87,9 +87,9 @@ class MakeRobot:
         Self.TankBase.on(Self.SpeedCPS(LeftSpeed), Self.SpeedCPS(RightSpeed))
         # Wait for gyro to be at TargetDegree.
         LaunchExited = False
-        while ((TargetDegree < -Self.Gyro.angle and DegPerSec > 0) # Use this condition when the degree is increasing (DegPerSec > 0).
+        while ((TargetDegree > -Self.Gyro.angle and DegPerSec > 0) # Use this condition when the degree is increasing (DegPerSec > 0).
                 or
-               (TargetDegree > -Self.Gyro.angle and DegPerSec < 0)): # Use this condition when the degree is decreasing (DegPerSec < 0).
+               (TargetDegree < -Self.Gyro.angle and DegPerSec < 0)): # Use this condition when the degree is decreasing (DegPerSec < 0).
             if Self.Button("DOWN"):
                 LaunchExited = True
                 break
@@ -142,19 +142,25 @@ class MakeRobot:
                    "DOWN" : Self.Buttons.down}
         return Pressed[Button]
 
+    def ResetGyro(Self):
+        Self.Gyro.mode = "GYRO-RATE"
+        Self.Gyro.mode = "GYRO-ANG"
+
+
 def RunLaunch(Launch, Robot):
     # Reset the gyro sensor.
-    Robot.Gyro.mode = "GYRO-RATE"
-    Robot.Gyro.mode = "GYRO-ANG"
+    Robot.ResetGyro()
     # Cycle through the steps of the launch.
     for Step in Launch:
         StepExited = Robot.InLaunchFunctions[Step[0]](Robot, Step[1:])
         # Return true and exit the launch if the step was exited.
         if StepExited:
+            # Stop all motion.
+            Robot.MotorOff([0])
+            Robot.MotorOff([1])
             return True
-    
     # Stop all motion.
-    Robot.MedMotors[0].off()
-    Robot.MedMotors[1].off()
+    Robot.MotorOff([0])
+    Robot.MotorOff([1])
     # Return false if the launch was completed without being exited on any step.
     return False
