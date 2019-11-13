@@ -97,6 +97,24 @@ class MakeRobot:
         Self.TankBase.off()
         # Return a boolean for whether or not the the launch was ended by the user.
         return LaunchExited
+
+    def LineFollow(Self, Args):
+        Speed = Args[0]
+        # Max value for sensing black.
+        MaxValue = 10
+        # Wait for both color sensors to sense black.
+        LaunchExited = False
+        while Self.Color1.value() > MaxValue or Self.Color2.value() > MaxValue:
+            # Turn on the drive motors based on sensed colors.
+            Self.TankBase.on(Self.SpeedCPS(Speed * (1 if Self.Color1.value() > MaxValue else -1)),
+                             Self.SpeedCPS(Speed * (1 if Self.Color2.value() > MaxValue else -1)))
+            if Self.Button("DOWN"):
+                LaunchExited = True
+                break
+        # Turn off the motors.
+        Self.TankBase.off()
+        # Return a boolean for whether or not the the launch was ended by the user.
+        return LaunchExited
         
     def MotorOn(Self, Args): # MotorNum is 0 or 1 for which motor is affected. Speed in cm/sec.
         (MotorNum, Speed) = Args
@@ -125,6 +143,7 @@ class MakeRobot:
     InLaunchFunctions = {"Drive" : Drive,
                          "DriveUltrasonic" : DriveUltrasonic,
                          "Turn" : Turn,
+                         "LineFollow" : LineFollow,
                          "MotorOn" : MotorOn,
                          "MotorOff" : MotorOff,
                          "Wait" : Wait}
