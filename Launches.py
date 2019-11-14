@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 L1 = [
-    ["LineFollow", 10],
-    ["Turn", 10, 18, 180]
+    ["Turn", 15, 10, 90],
+    ["MotorOn", 0, -0.01],
+    ["Drive", 10, 100],
+    ["MotorOff", 0]
 ]
 
 L2 = [
