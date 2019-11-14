@@ -34,16 +34,19 @@ class MakeRobot:
     def Drive(Self, Args): # Speed in cm/sec. Distance in cm.
         (Speed, Distance) = Args
         # Get motor angle information.
+        StartAngle = Self.Gyro.angle
         Start = Self.DriveMotor.position
         DegreesMoved = Distance / Self.WheelCircumference * 360
         End = Start + DegreesMoved
-        # Turn on the motors.
-        Self.TankBase.on(Self.SpeedCPS(Speed), Self.SpeedCPS(Speed))
         # Wait for the motor to be at the correct angle.
         LaunchExited = False
         while ((End > Self.DriveMotor.position and Speed > 0) # Use this condition when the motor position is increasing (Speed > 0).
                 or
                (End < Self.DriveMotor.position and Speed < 0)):  # Use this condition when the motor position is decreasing (Speed < 0).
+            # Turn on the motors.
+            right = Self.SpeedCPS(Speed) * ((StartAngle + Self.Gyro.angle) / 45 + 1)
+            left = Self.SpeedCPS(Speed) * ((StartAngle - Self.Gyro.angle) / 45 + 1)
+            Self.TankBase.on(right, left)
             if Self.Button("DOWN"):
                 LaunchExited = True
                 break
