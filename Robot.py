@@ -57,13 +57,17 @@ class MakeRobot:
         
     def DriveUltrasonic(Self, Args): # Speed in cm/sec. TargetDistance in cm.
         (Speed, TargetDistance) = Args
-        # Turn on the motors.
-        Self.TankBase.on(Self.SpeedCPS(Speed), Self.SpeedCPS(Speed))
+        # Get gyro angle information.
+        StartAngle = Self.Gyro.angle
         # Wait for the ultrasonic to be at TargetDistance.
         LaunchExited = False
         while ((TargetDistance > Self.Ultrasonic.distance_centimeters and Speed > 0) # Use this condition when the distance is increasing (Speed > 0).
                 or
                (TargetDistance < Self.Ultrasonic.distance_centimeters and Speed < 0)):  # Use this condition when the distance is decreasing (Speed < 0).
+            # Turn on the motors.
+            right = Self.SpeedCPS(Speed) * (-(StartAngle - Self.Gyro.angle) / 45 * Speed / abs(Speed) + 1)
+            left = Self.SpeedCPS(Speed) * ((StartAngle - Self.Gyro.angle) / 45  * Speed / abs(Speed) + 1)
+            Self.TankBase.on(right, left)
             if Self.Button("DOWN"):
                 LaunchExited = True
                 break
