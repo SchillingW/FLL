@@ -44,8 +44,8 @@ class MakeRobot:
                 or
                (End < Self.DriveMotor.position and Speed < 0)):  # Use this condition when the motor position is decreasing (Speed < 0).
             # Turn on the motors.
-            right = Self.SpeedCPS(Speed) * ((StartAngle + Self.Gyro.angle) / 45 + 1)
-            left = Self.SpeedCPS(Speed) * ((StartAngle - Self.Gyro.angle) / 45 + 1)
+            right = Self.SpeedCPS(Speed) * (-(StartAngle - Self.Gyro.angle) / 45 * Speed / abs(Speed) + 1)
+            left = Self.SpeedCPS(Speed) * ((StartAngle - Self.Gyro.angle) / 45  * Speed / abs(Speed) + 1)
             Self.TankBase.on(right, left)
             if Self.Button("DOWN"):
                 LaunchExited = True
