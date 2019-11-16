@@ -31,17 +31,23 @@
 # ]
 
 L1 = [
-    ["Turn"            ,  13 ,  30 ,  90 ],
-    ["Drive"           ,        10 ,  90 ],
-    ["Turn"            ,  0  , -30 ,  45 ],
-    ["LineFollow"      ,        10       ],
-    ["Turn"            , -5  ,  30 ,  90 ],
-    ["Drive"           ,        10 ,  15 ],
-    ["DriveUltrasonic" ,       -20 ,  40 ],
-    ["Turn"            ,  10 , -30 ,  0  ],
+    ["DriveUltrasonic" ,        5  ,  60 ],
+    ["DriveUltrasonic" ,       -10 ,  20 ],
+    ["Turn"            , -20 ,  30 ,  90 ],
 ]
 
 L2 = [
+    ["Turn"            ,  13 ,  30 ,  90 ],
+    ["Drive"           ,        10 ,  90 ],
+    ["Turn"            ,  0  , -30 ,  45 ],
+    ["LineFollow"      ,        5        ],
+    ["Turn"            , -5  ,  30 ,  90 ],
+    ["Drive"           ,        10 ,  15 ],
+    ["Drive"           ,       -10 , -15 ],
+    ["Turn"            ,  0  ,  9  ,  90 ],
+    ["Turn"            ,  0  , -9  ,  90 ],
+    ["DriveUltrasonic" ,       -20 ,  15 ],
+    ["Turn"            ,  15 , -30 ,  0  ],
 ]
 
 L3 = [
