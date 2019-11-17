@@ -32,9 +32,8 @@ class MakeRobot:
         return Self.SpeedRPS(Speed / Self.WheelCircumference)
 
     def Drive(Self, Args): # Speed in cm/sec. Distance in cm.
-        (Speed, Distance) = Args
+        (StartAngle, Speed, Distance) = Args
         # Get motor angle information.
-        StartAngle = Self.Gyro.angle
         Start = Self.DriveMotor.position
         DegreesMoved = Distance / Self.WheelCircumference * 360
         End = Start + DegreesMoved
@@ -56,9 +55,7 @@ class MakeRobot:
         return LaunchExited
         
     def DriveUltrasonic(Self, Args): # Speed in cm/sec. TargetDistance in cm.
-        (Speed, TargetDistance) = Args
-        # Get gyro angle information.
-        StartAngle = Self.Gyro.angle
+        (StartAngle, Speed, TargetDistance) = Args
         # Wait for the ultrasonic to be at TargetDistance.
         LaunchExited = False
         while ((TargetDistance > Self.Ultrasonic.distance_centimeters and Speed > 0) # Use this condition when the distance is increasing (Speed > 0).
