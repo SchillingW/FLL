@@ -24,6 +24,9 @@ class MakeRobot:
         Self.Gyro = GyroSensor(Ports[Gyro])
         Self.Buttons = Button()
         Self.LCD = Display()
+        # Lock the medium motors.
+        Self.MotorOff([0])
+        Self.MotorOff([1])
 
     # In launch functions.
 
@@ -43,8 +46,8 @@ class MakeRobot:
                 or
                (End < Self.DriveMotor.position and Speed < 0)):  # Use this condition when the motor position is decreasing (Speed < 0).
             # Turn on the motors.
-            right = Self.SpeedCPS(Speed) * (-(StartAngle - Self.Gyro.angle) / 45 * Speed / abs(Speed) + 1)
-            left = Self.SpeedCPS(Speed) * ((StartAngle - Self.Gyro.angle) / 45  * Speed / abs(Speed) + 1)
+            right = Self.SpeedCPS(Speed) * ((StartAngle + Self.Gyro.angle) / 45 * Speed / abs(Speed) + 1)
+            left = Self.SpeedCPS(Speed) * (-(StartAngle + Self.Gyro.angle) / 45  * Speed / abs(Speed) + 1)
             Self.TankBase.on(right, left)
             if Self.Button("DOWN"):
                 LaunchExited = True
@@ -62,8 +65,8 @@ class MakeRobot:
                 or
                (TargetDistance < Self.Ultrasonic.distance_centimeters and Speed < 0)):  # Use this condition when the distance is decreasing (Speed < 0).
             # Turn on the motors.
-            right = Self.SpeedCPS(Speed) * (-(StartAngle - Self.Gyro.angle) / 45 * Speed / abs(Speed) + 1)
-            left = Self.SpeedCPS(Speed) * ((StartAngle - Self.Gyro.angle) / 45  * Speed / abs(Speed) + 1)
+            right = Self.SpeedCPS(Speed) * ((StartAngle + Self.Gyro.angle) / 45 * Speed / abs(Speed) + 1)
+            left = Self.SpeedCPS(Speed) * (-(StartAngle + Self.Gyro.angle) / 45  * Speed / abs(Speed) + 1)
             Self.TankBase.on(right, left)
             if Self.Button("DOWN"):
                 LaunchExited = True
