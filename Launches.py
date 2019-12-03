@@ -32,15 +32,17 @@
 # ]
 
 South = [
-    ["Turn"            ,  10 ,  30  ,  90  ],
-    ["MotorOn"         ,  1  ,  .06        ],
+    ["Turn"            ,  11 ,  30  ,  90  ],
+    ["MotorOn"         ,  1  ,  0.1        ],
     ["Drive"           ,  90 ,  10  ,  90  ],
     ["MotorOff"        ,  1                ],
     ["Turn"            ,  0  , -30  ,  60  ],
     ["LineFollow"      ,        5          ],
     ["Turn"            , -5  ,  30  ,  90  ],
+    ["MotorOn"         ,  1  , -0.5        ],
     ["Drive"           ,  90 ,  10  ,  15  ],
-    ["DriveUltrasonic" ,  90 , -20  ,  16  ],
+    ["MotorOff"        ,  1                ],
+    ["DriveUltrasonic" ,  90 , -20  ,  18  ],
     ["Turn"            ,  15 , -30  ,  0   ],
 ]
 
