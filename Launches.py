@@ -31,6 +31,16 @@
 #   ["Wait"            ,              4  ],
 # ]
 
+TanTower = [
+    ["Drive"           ,  0  ,  10  ,  110 ],
+    ["Drive"           ,  0  , -20  , -160 ],
+]
+
+RedTower = [
+    ["Drive"           ,  0  ,  10  ,  65  ],
+    ["Drive"           ,  0  , -20  , -115 ],
+]
+
 South = [
     ["Turn"            ,  11 ,  30  ,  90  ],
     ["MotorOn"         ,  1  ,  .11        ],
@@ -48,7 +58,8 @@ South = [
 ]
 
 West = [
-    ["DriveUltrasonic" ,  0 ,  10  ,  65  ],
+    ["DriveUltrasonic" ,  0 ,   10  ,  65  ],
+    ["DriveUltrasonic" ,  0 ,  -10  ,  5   ],
 ]
 
 LargeTower = [
@@ -58,18 +69,4 @@ LargeTower = [
     ["Turn"            , -20 ,  30  ,  90  ],
 ]
 
-RedTower = [
-    ["Drive"           ,  0  ,  10  ,  103 ],
-    ["Drive"           ,  0  , -10  , -103 ],
-]
-
-TanTower = [
-    ["Drive"           ,  0  ,  10  ,  65  ],
-    ["Drive"           ,  0  , -10  , -65  ],
-]
-
-Bridge = [
-    ["Drive"           ,  0  ,  50  ,  65  ],
-]
-
-Launches = [South, West, LargeTower, RedTower, TanTower, Bridge]
+Launches = [TanTower, RedTower, West, LargeTower]
