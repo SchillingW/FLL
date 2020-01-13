@@ -63,6 +63,17 @@ LargeTower = [
     ["Turn"            , -20 ,  30  ,  90  ],
 ]
 
+SafetyFactor = [
+    ["Turn"             ,  0  ,  30  ,  180],
+]
+
+TreeHouse = [
+    ["Drive"            ,  0  ,  20  ,  65 ],
+    ["Drive"            ,  0  , -30  , -70 ],
+    ["Turn"             ,  0  ,  10  ,  45 ],
+    ["Drive"            ,  0  , -30  ,  10 ],
+]
+
 South = [
     ["Turn"            ,  11 ,  30  ,  90  ],
     ["MotorOn"         ,  1  ,  .11        ],
