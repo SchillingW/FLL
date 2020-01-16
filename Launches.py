@@ -68,7 +68,7 @@ SafetyFactor = [
     ["Turn"             ,  0  , -20  , -140 ],
     ["Drive"            , -135, -20  , -101 ],
     ["Turn"             ,  0  ,  25  ,  50  ],
-    ["DriveUltrasonic"  ,  90 , -20  ,  10  ],
+    ["DriveUltrasonic"  ,  50 , -20  ,  10  ],
     ["Turn"             ,  5  , -30  ,  0   ],
 ]
 
