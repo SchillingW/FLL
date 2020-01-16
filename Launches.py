@@ -64,14 +64,20 @@ LargeTower = [
 ]
 
 SafetyFactor = [
-    ["Turn"             ,  0  ,  30  ,  180],
+    ["Drive"            ,  0  ,  25  ,  45  ],
+    ["Turn"             ,  0  , -20  , -140 ],
+    ["Drive"            , -135, -20  , -101 ],
+    ["Turn"             ,  0  ,  25  ,  50  ],
+    ["DriveUltrasonic"  ,  90 , -20  ,  10  ],
+    ["Turn"             ,  5  , -30  ,  0   ],
 ]
 
 TreeHouse = [
     ["Drive"            ,  0  ,  20  ,  65 ],
-    ["Drive"            ,  0  , -30  , -70 ],
-    ["Turn"             ,  0  ,  10  ,  45 ],
-    ["Drive"            ,  0  , -30  ,  10 ],
+    ["Drive"            ,  0  , -30  , -45 ],
+    ["Turn"             ,  0  ,  10  , -45 ],
+    ["Drive"            ,  0  , -10  , 100 ],
+    ["Turn"             ,  0  ,  30  , 180 ],
 ]
 
 South = [
@@ -90,4 +96,4 @@ South = [
     ["Turn"            ,  5  , -30  ,  0   ],
 ]
 
-Launches = [TanTower, RedTower, West, LargeTower, South]
+Launches = [TanTower, RedTower, West, LargeTower, SafetyFactor, TreeHouse, South]
