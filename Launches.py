@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+# Returns a list representing a launch that places a tower.
+def Tower(distance, angle):
+    return [
+    ["Drive"           , 0     ,  10 ,  distance ],
+    ["Drive"           , 0     , -20 , -distance ],
+    ["Turn"            , 0     ,  30 ,  angle    ],
+    ["DriveUltrasonic" , angle , -20 ,  5        ],
+    ]
+
 # Key a (path):
 #
 #  1 - angle
@@ -31,17 +40,20 @@
 #   ["Wait"            ,              4  ],
 # ]
 
+# Places the tan tower.
 TanTower = [
     ["Drive"           ,  0  ,  10  ,  110 ],
     ["Drive"           ,  0  , -20  , -160 ],
 ]
 
+# Places the red tower.
 RedTower = [
     ["Drive"           ,  0  ,  10  ,  65  ],
     ["Drive"           ,  0  , -20  , -115 ],
 ]
 
-West = [
+# Does all aspects of the crane mission.
+Crane = [
     ["DriveUltrasonic" ,  0  ,  10  ,  10  ],
     ["Turn"            ,  0  ,  30  ,  90  ],
     ["DriveUltrasonic" ,  90 ,  10  ,  57  ],
@@ -56,14 +68,14 @@ West = [
     ["Turn"            ,  5  , -30  ,  0   ],
 ]
 
-LargeTower = [
-    ["Drive"           ,  0  ,  5   ,  5   ],
-    ["DriveUltrasonic" ,  0  ,  5   ,  60  ],
-    ["DriveUltrasonic" ,  0  , -20  ,  20  ],
-    ["Turn"            , -20 ,  30  ,  90  ],
-]
+# Places the blue and white towers in the black circle.
+MixedTower = Tower(55, 90)
 
-SafetyFactor = [
+# Places the inovative architecture module in the black circle.
+Architecture = Tower(45, 45)
+
+# Flips the elevator and lowers two beams on the safety factor.
+East = [
     ["Drive"            ,  0  ,  25  ,  45  ],
     ["Turn"             ,  0  , -20  , -140 ],
     ["Drive"            , -135, -20  , -101 ],
@@ -72,6 +84,20 @@ SafetyFactor = [
     ["Turn"             ,  5  , -30  ,  0   ],
 ]
 
+# Raises the traffic jam and starts the swing.
+South = [
+    ["Turn"            ,  11 ,  30  ,  90  ],
+    ["Drive"           ,  90 ,  10  ,  90  ],
+    ["Turn"            ,  0  , -30  ,  75  ],
+    ["LineFollow"      ,        5          ],
+    ["Turn"            , -10 ,  30  ,  90  ],
+    ["Drive"           ,  90 ,  10  ,  20  ],
+    ["Wait"            ,               1   ],
+    ["DriveUltrasonic" ,  90 , -20  ,  10  ],
+    ["Turn"            ,  5  , -30  ,  0   ],
+]
+
+# Places a blue module and two large modules in the tree.
 TreeHouse = [
     ["Drive"            ,  0  ,  20  ,  65 ],
     ["Drive"            ,  0  , -30  , -45 ],
@@ -80,20 +106,4 @@ TreeHouse = [
     ["Turn"             ,  0  ,  30  , 180 ],
 ]
 
-South = [
-    ["Turn"            ,  11 ,  30  ,  90  ],
-    ["MotorOn"         ,  1  ,  .11        ],
-    ["Drive"           ,  90 ,  10  ,  90  ],
-    ["MotorOff"        ,  1                ],
-    ["Turn"            ,  0  , -30  ,  75  ],
-    ["LineFollow"      ,        5          ],
-    ["Turn"            , -10 ,  30  ,  90  ],
-    ["MotorOn"         ,  1  , -.5         ],
-    ["Drive"           ,  90 ,  10  ,  20  ],
-    ["MotorOff"        ,  1                ],
-    ["Wait"            ,               1   ],
-    ["DriveUltrasonic" ,  90 , -20  ,  10  ],
-    ["Turn"            ,  5  , -30  ,  0   ],
-]
-
-Launches = [TanTower, RedTower, West, LargeTower, SafetyFactor, TreeHouse, South]
+Launches = [TanTower, RedTower, Crane, MixedTower, Architecture, East, South, TreeHouse]
