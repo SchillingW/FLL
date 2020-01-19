@@ -40,17 +40,21 @@ def Tower(distance, angle):
 #   ["Wait"            ,              4  ],
 # ]
 
-# Places the tan tower.
-TanTower = [
-    ["Drive"           ,  0  ,  10  ,  110 ],
-    ["Drive"           ,  0  , -20  , -160 ],
+# Raises the traffic jam and starts the swing.
+South = [
+    ["Turn"            ,  12 ,  30  ,  90  ],
+    ["Drive"           ,  90 ,  10  ,  105 ],
+    ["Wait"            ,               1   ],
+    ["DriveUltrasonic" ,  90 , -30  ,  10  ],
+    ["Turn"            ,  5  , -30  ,  0   ],
+
 ]
 
+# Places the tan tower.
+TanTower = Tower(110, 26)
+
 # Places the red tower.
-RedTower = [
-    ["Drive"           ,  0  ,  10  ,  65  ],
-    ["Drive"           ,  0  , -20  , -115 ],
-]
+RedTower = Tower(65, 22)
 
 # Does all aspects of the crane mission.
 Crane = [
@@ -59,8 +63,11 @@ Crane = [
     ["DriveUltrasonic" ,  90 ,  10  ,  57  ],
     ["Turn"            ,  0  , -30  ,  0   ],
     ["DriveUltrasonic" ,  0  ,  10  ,  60  ],
-    ["DriveUltrasonic" ,  0  , -5   ,  50  ],
-    ["DriveUltrasonic" ,  0  ,  5   ,  65  ],
+    ["Drive"           ,  0  ,  2   ,  15  ],
+    #["Wait"            ,  .5               ],
+    #["DriveUltrasonic" ,  0  , -5   ,  60  ],
+    #["Wait"            ,  .5               ],
+    #["DriveUltrasonic" ,  0  ,  1   ,  70  ],
     ["Wait"            ,  2                ],
     ["DriveUltrasonic" ,  0  , -20  ,  50  ],
     ["Turn"            ,  0  ,  30  ,  90  ],
@@ -84,19 +91,6 @@ East = [
     ["Turn"             ,  5  , -30  ,  0   ],
 ]
 
-# Raises the traffic jam and starts the swing.
-South = [
-    ["Turn"            ,  11 ,  30  ,  90  ],
-    ["Drive"           ,  90 ,  10  ,  90  ],
-    ["Turn"            ,  0  , -30  ,  75  ],
-    ["LineFollow"      ,        5          ],
-    ["Turn"            , -10 ,  30  ,  90  ],
-    ["Drive"           ,  90 ,  10  ,  20  ],
-    ["Wait"            ,               1   ],
-    ["DriveUltrasonic" ,  90 , -20  ,  10  ],
-    ["Turn"            ,  5  , -30  ,  0   ],
-]
-
 # Places a blue module and two large modules in the tree.
 TreeHouse = [
     ["Drive"            ,  0  ,  20  ,  65 ],
@@ -106,4 +100,4 @@ TreeHouse = [
     ["Turn"             ,  0  ,  30  , 180 ],
 ]
 
-Launches = [TanTower, RedTower, Crane, MixedTower, Architecture, East, South, TreeHouse]
+Launches = [South, TanTower, RedTower, Crane, MixedTower, Architecture, East, TreeHouse]
