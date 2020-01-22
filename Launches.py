@@ -66,15 +66,14 @@ MixedTower = Tower(55, 90)
 
 # Flips the elevator and lowers two beams on the safety factor.
 East = [
-    #["MotorOn"          ,  0  ,  20         ],
+    ["MotorOn"          ,  1  ,  -3         ],
     ["Drive"            ,  0  ,  20  ,  45  ],
-    #["MotorOn"          ,  0  , -20         ],
+    ["MotorOff"         ,  1                ],
+    #["MotorOn"          ,  0  , -10         ],
     #["Drive"            ,  0  , -25  , -15  ],
-    ["Turn"             ,  0  , -30  , -140 ],
-    ["Drive"            , -135, -20  , -101 ],
-    ["Turn"             ,  0  ,  30  ,  50  ],
-    ["DriveUltrasonic"  ,  50 , -20  ,  10  ],
-    ["Turn"             ,  5  , -30  ,  0   ],
+    ["Turn"             ,  0  , -40  , -143 ],
+    ["Drive"            , -135, -20  , -95  ],
+    ["Turn"             ,  5  , -30  ,   0  ],
 ]
 
 # Places two blue modules in the tree.
@@ -83,7 +82,7 @@ TreeHouse = [
     ["Drive"            ,  0  , -30  , -45 ],
     ["Turn"             ,  0  ,  10  , -45 ],
     ["Drive"            ,  0  , -10  , 100 ],
-    ["Turn"             ,  0  ,  30  , 180 ],
+    ["Turn"             ,  0  ,  90  , 180 ],
 ]
 
 # Raises the traffic jam and starts the swing.
