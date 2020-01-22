@@ -3,10 +3,10 @@
 # Returns a list representing a launch that places a tower.
 def Tower(distance, angle):
     return [
-    ["Drive"           , 0     ,  10 ,  distance ],
-    ["Drive"           , 0     , -20 , -distance ],
-    ["Turn"            , 0     ,  30 ,  angle    ],
-    ["DriveUltrasonic" , angle , -20 ,  5        ],
+        ["Drive"           , 0     ,  20 ,  distance ],
+        ["Drive"           , 0     , -30 , -distance ],
+        ["Turn"            , 0     ,  30 ,  angle    ],
+        ["DriveUltrasonic" , angle , -30 ,  5        ],
     ]
 
 # Key a (path):
@@ -40,16 +40,6 @@ def Tower(distance, angle):
 #   ["Wait"            ,              4  ],
 # ]
 
-# Raises the traffic jam and starts the swing.
-South = [
-    ["Turn"            ,  12 ,  30  ,  90  ],
-    ["Drive"           ,  90 ,  10  ,  105 ],
-    ["Wait"            ,               1   ],
-    ["DriveUltrasonic" ,  90 , -30  ,  10  ],
-    ["Turn"            ,  5  , -30  ,  0   ],
-
-]
-
 # Places the tan tower.
 TanTower = Tower(110, 26)
 
@@ -64,10 +54,6 @@ Crane = [
     ["Turn"            ,  0  , -30  ,  0   ],
     ["DriveUltrasonic" ,  0  ,  10  ,  60  ],
     ["Drive"           ,  0  ,  2   ,  15  ],
-    #["Wait"            ,  .5               ],
-    #["DriveUltrasonic" ,  0  , -5   ,  60  ],
-    #["Wait"            ,  .5               ],
-    #["DriveUltrasonic" ,  0  ,  1   ,  70  ],
     ["Wait"            ,  2                ],
     ["DriveUltrasonic" ,  0  , -20  ,  50  ],
     ["Turn"            ,  0  ,  30  ,  90  ],
@@ -78,20 +64,20 @@ Crane = [
 # Places the blue and white towers in the black circle.
 MixedTower = Tower(55, 90)
 
-# Places the inovative architecture module in the black circle.
-Architecture = Tower(45, 45)
-
 # Flips the elevator and lowers two beams on the safety factor.
 East = [
-    ["Drive"            ,  0  ,  25  ,  45  ],
-    ["Turn"             ,  0  , -20  , -140 ],
+    #["MotorOn"          ,  0  ,  20         ],
+    ["Drive"            ,  0  ,  20  ,  45  ],
+    #["MotorOn"          ,  0  , -20         ],
+    #["Drive"            ,  0  , -25  , -15  ],
+    ["Turn"             ,  0  , -30  , -140 ],
     ["Drive"            , -135, -20  , -101 ],
-    ["Turn"             ,  0  ,  25  ,  50  ],
+    ["Turn"             ,  0  ,  30  ,  50  ],
     ["DriveUltrasonic"  ,  50 , -20  ,  10  ],
     ["Turn"             ,  5  , -30  ,  0   ],
 ]
 
-# Places a blue module and two large modules in the tree.
+# Places two blue modules in the tree.
 TreeHouse = [
     ["Drive"            ,  0  ,  20  ,  65 ],
     ["Drive"            ,  0  , -30  , -45 ],
@@ -100,4 +86,13 @@ TreeHouse = [
     ["Turn"             ,  0  ,  30  , 180 ],
 ]
 
-Launches = [South, TanTower, RedTower, Crane, MixedTower, Architecture, East, TreeHouse]
+# Raises the traffic jam and starts the swing.
+South = [
+    ["Turn"            ,  12 ,  30  ,  90  ],
+    ["Drive"           ,  90 ,  10  ,  105 ],
+    ["Wait"            ,               1   ],
+    ["DriveUltrasonic" ,  90 , -30  ,  10  ],
+    ["Turn"            ,  5  , -30  ,  0   ],
+]
+
+Launches = [TanTower, RedTower, Crane, MixedTower, East, TreeHouse, South]
